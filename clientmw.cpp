@@ -4,8 +4,8 @@
 #include "ui_clientmw.h"
 
 ClientMW::ClientMW(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::ClientMW)
+    : QMainWindow(parent),
+      ui(new Ui::ClientMW)
 {
     ui->setupUi(this);
 }

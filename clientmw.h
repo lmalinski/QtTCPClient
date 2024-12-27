@@ -34,6 +34,7 @@ private:
     QString composeIPAddres();
     bool validateConnectionData(QString adr, int port);
     void resetClient();
+
     Ui::ClientMW *ui;
     MyTCPClient *m_client = nullptr;
 };

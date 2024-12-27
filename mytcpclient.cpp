@@ -1,7 +1,7 @@
 #include "mytcpclient.h"
 
 MyTCPClient::MyTCPClient(QObject *parent)
-    : QObject{parent}
+    : QObject{parent}, m_socket(this)
 {
     connect(&m_socket,SIGNAL(connected()),this,SLOT(slot_connected()));
     connect(&m_socket,SIGNAL(disconnected()),this,SIGNAL(disconnected()));
