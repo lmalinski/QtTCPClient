@@ -20,6 +20,12 @@ void MyTCPClient::disconnectFrom()
     m_socket.close();
 }
 
+void MyTCPClient::sendMsg(QString msg)
+{
+    QByteArray data = msg.toUtf8();
+    m_socket.write(data);
+}
+
 void MyTCPClient::slot_connected()
 {
     emit connected(m_ipAddress,m_port);

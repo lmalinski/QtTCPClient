@@ -64,8 +64,6 @@ void ClientMW::on_connectBut_clicked()
         return;
     resetClient();
     m_client->connectTo(adr,port);
-    ui->disconnectBut->setEnabled(true);
-
 }
 
 void ClientMW::on_chkBut_clicked()
@@ -80,14 +78,15 @@ void ClientMW::on_disconnectBut_clicked()
 {
     m_client->disconnectFrom();
     ui->disconnectBut->setEnabled(false);
+    ui->textCommGrp->setEnabled(false);
 }
 
 
 void ClientMW::on_sendBut_clicked()
 {
-    QString massage = ui->sendText->toPlainText();
+    QString message = ui->sendText->toPlainText();
     ui->sendText->clear();
-    //TODO
+    m_client->sendMsg(message);
 }
 
 void ClientMW::on_clrBut_clicked()
@@ -98,11 +97,15 @@ void ClientMW::on_clrBut_clicked()
 void ClientMW::slot_connected(QString adr, int port)
 {
     ui->statusbar->showMessage("Connected to " + adr + " " + QString::number(port));
+    ui->disconnectBut->setEnabled(true);
+    ui->textCommGrp->setEnabled(true);
 }
 
 void ClientMW::slot_disconnected()
 {
     ui->statusbar->showMessage("Disconnected");
+    ui->disconnectBut->setEnabled(false);
+    ui->textCommGrp->setEnabled(false);
 }
 
 void ClientMW::slot_messageRecived(QString msg)
