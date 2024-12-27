@@ -21,10 +21,14 @@ public:
 
 private slots:
     void on_connectBut_clicked();
+    void on_chkBut_clicked();
+    void on_sendBut_clicked();
+    void on_disconnectBut_clicked();
+    void on_clrBut_clicked();
+
     void slot_connected(QString adr, int port);
     void slot_disconnected();
-
-    void on_chkBut_clicked();
+    void slot_messageRecived(QString msg);
 
 private:
     QString composeIPAddres();

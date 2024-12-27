@@ -51,6 +51,7 @@ void ClientMW::resetClient()
     m_client = new MyTCPClient(this);
     connect(m_client,SIGNAL(connected(QString,int)),this,SLOT(slot_connected(QString,int)));
     connect(m_client,SIGNAL(disconnected()),this,SLOT(slot_disconnected()));
+    connect(m_client,SIGNAL(messageRecived(QString)),this,SLOT(slot_messageRecived(QString)));
 }
 
 void ClientMW::on_connectBut_clicked()
@@ -63,7 +64,35 @@ void ClientMW::on_connectBut_clicked()
         return;
     resetClient();
     m_client->connectTo(adr,port);
+    ui->disconnectBut->setEnabled(true);
 
+}
+
+void ClientMW::on_chkBut_clicked()
+{
+    if(m_client->isConnected())
+        ui->statusbar->showMessage("Connected");
+    else
+        ui->statusbar->showMessage("Disconnected");
+}
+
+void ClientMW::on_disconnectBut_clicked()
+{
+    m_client->disconnectFrom();
+    ui->disconnectBut->setEnabled(false);
+}
+
+
+void ClientMW::on_sendBut_clicked()
+{
+    QString massage = ui->sendText->toPlainText();
+    ui->sendText->clear();
+    //TODO
+}
+
+void ClientMW::on_clrBut_clicked()
+{
+    ui->reciveText->clear();
 }
 
 void ClientMW::slot_connected(QString adr, int port)
@@ -76,11 +105,11 @@ void ClientMW::slot_disconnected()
     ui->statusbar->showMessage("Disconnected");
 }
 
-void ClientMW::on_chkBut_clicked()
+void ClientMW::slot_messageRecived(QString msg)
 {
-    if(m_client->isConnected())
-        ui->statusbar->showMessage("Connected");
-    else
-        ui->statusbar->showMessage("Disconnected");
+    ui->reciveText->append(msg);
 }
+
+
+
 

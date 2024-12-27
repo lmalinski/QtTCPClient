@@ -16,8 +16,10 @@ public:
 signals:
     void connected(QString adr, int port);
     void disconnected();
+    void messageRecived(QString msg);
 private slots:
-    void on_connected();
+    void slot_connected();
+    void slot_readyRead();
 private:
     QTcpSocket m_socket;
     QString m_ipAddress = "127.0.0.1";
