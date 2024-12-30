@@ -3,13 +3,15 @@
 
 #include <QMainWindow>
 
-class MyTCPClient;
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class ClientMW;
 }
 QT_END_NAMESPACE
+
+class MyTCPClient;
 
 class ClientMW : public QMainWindow
 {

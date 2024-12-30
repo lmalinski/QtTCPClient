@@ -76,8 +76,6 @@ void ClientMW::on_chkBut_clicked()
 void ClientMW::on_disconnectBut_clicked()
 {
     m_client->disconnectFrom();
-    ui->disconnectBut->setEnabled(false);
-    ui->textCommGrp->setEnabled(false);
 }
 
 
