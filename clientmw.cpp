@@ -45,7 +45,6 @@ void ClientMW::resetClient()
     if(m_client != nullptr)
     {
         m_client->disconnectFrom();
-        disconnect(m_client);
         delete m_client;
     }
     m_client = new MyTCPClient(this);
